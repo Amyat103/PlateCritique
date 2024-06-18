@@ -1,6 +1,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import pictureRoutes from './routes/pictures.js';
+import mongoose from 'mongoose';
 
 config();
 
@@ -19,6 +20,16 @@ app.use((req, res, next) => {
 // attach routes
 app.use('/', pictureRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+// connect mongoDB atlas
+async function connectToMongo() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('Connected to MONGO');
+    app.listen(process.env.PORT, () => {
+      console.log(`Listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+connectToMongo();
