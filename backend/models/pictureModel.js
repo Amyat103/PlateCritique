@@ -8,7 +8,7 @@ const pictureSchema = new Schema(
     foodType: {
       type: String,
       required: true,
-      enum: ['Snack', 'Breakfast', 'Brunch', 'Dinner'],
+      enum: ['Snack', 'Breakfast', 'Brunch', 'Dinner', 'Lunch'],
     },
     description: {
       type: String,
