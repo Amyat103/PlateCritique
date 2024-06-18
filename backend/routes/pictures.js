@@ -1,4 +1,5 @@
 import express from 'express';
+import Picture from '../models/PictureModel.js';
 
 const router = express.Router();
 
@@ -13,8 +14,22 @@ router.get('/:id', (req, res) => {
 });
 
 // POST a new picture
-router.post('/', (req, res) => {
-  res.json({ message: 'POST a picture' });
+router.post('/', async (req, res) => {
+  const { title, foodType, description, picture, timestamp } = req.body;
+
+  try {
+    const newPicture = await Picture.create({
+      title,
+      foodType,
+      description,
+      picture,
+      timestamp,
+    });
+    res.status(200).json(newPicture);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: err.message });
+  }
 });
 
 // DELETE a picture
