@@ -7,13 +7,6 @@ function PictureForm() {
   const [picture, setPicture] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  //   const [validation, setValidation] = useState({
-  //     title: false,
-  //     foodType: false,
-  //     description: false,
-  //     picture: false,
-  //   });
-
   const [error, setError] = useState(null);
 
   async function handlePost(e) {
@@ -24,7 +17,7 @@ function PictureForm() {
       const post = { title, foodType, description, picture };
 
       try {
-        const response = await fetch('/', {
+        const response = await fetch('http://localhost:4000/', {
           method: 'POST',
           body: JSON.stringify(post),
           headers: {
@@ -36,7 +29,8 @@ function PictureForm() {
 
         if (!response.ok) {
           console.error(json.error);
-        } else {
+        }
+        if (response.ok) {
           setTitle('');
           setFoodType('');
           setDescription('');
