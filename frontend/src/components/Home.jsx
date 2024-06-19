@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PictureBox from './PictureBox';
 
 function Home() {
   const [picture, setPicture] = useState(null);
@@ -25,7 +26,8 @@ function Home() {
     <div className='container'>
       <div className='pictures'>
         <h2>Home</h2>
-        {picture && picture.map((each) => <p key={each._id}>{each.title}</p>)}
+        {picture &&
+          picture.map((each) => <PictureBox key={each._id} picture={each} />)}
       </div>
     </div>
   );
