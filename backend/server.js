@@ -2,12 +2,15 @@ import express from 'express';
 import { config } from 'dotenv';
 import pictureRoutes from './routes/pictures.js';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 config();
 
 const PORT = process.env.PORT;
 
 const app = express();
+
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // add body to req to modify database
 app.use(express.json());
