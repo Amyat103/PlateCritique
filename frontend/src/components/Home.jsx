@@ -30,7 +30,6 @@ function Home() {
         {picture &&
           picture.map((each) => <PictureBox key={each._id} picture={each} />)}
       </div>
-      <PictureForm />
     </div>
   );
 }

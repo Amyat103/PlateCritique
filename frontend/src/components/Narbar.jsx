@@ -5,7 +5,10 @@ function Navbar() {
     <header>
       <div className='container'>
         <Link to='/'>
-          <h1>NavBar</h1>
+          <h2>Home</h2>
+        </Link>
+        <Link to='/post'>
+          <h2>Post</h2>
         </Link>
       </div>
     </header>
