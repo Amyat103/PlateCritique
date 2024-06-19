@@ -6,9 +6,38 @@ function PictureForm() {
   const [description, setDescription] = useState('');
   const [picture, setPicture] = useState('');
 
+  const [error, setError] = useState(null);
+
+  async function handlePost(e) {
+    e.preventDefault();
+
+    const post = { title, foodType, description, picture };
+
+    const response = await fetch('/', {
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    } else {
+      setTitle('');
+      setFoodType('');
+      setDescription('');
+      setPicture('');
+      setError(null);
+      console.log('POST POSTED');
+    }
+  }
+
   return (
     <>
-      <form>
+      <form className='post-picture' onSubmit={handlePost}>
         <h2>Upload A Post</h2>
         <label>Post Title:</label>
         <input
