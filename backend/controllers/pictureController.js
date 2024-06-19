@@ -46,6 +46,47 @@ async function createPicture(req, res) {
 
 // DELETE a picture
 
+async function deletePicture(req, res) {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ error: "Can't find that picture, couldn't delete" });
+  }
+
+  const picture = await Picture.findByIdAndDelete({ _id: id });
+
+  if (!picture) {
+    return res.status(400).json({ error: 'No such picture' });
+  }
+
+  res.status(200).json(picture);
+}
+
 // UPDATE a picture
 
-export { createPicture, getPictures, getPicture };
+async function updatePicture(req, res) {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ error: "Can't find that picture, couldn't delete" });
+  }
+
+  const picture = await Picture.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
+
+  if (!picture) {
+    return res.status(400).json({ error: 'No such picture' });
+  }
+
+  res.status(200).json(picture);
+}
+
+export { createPicture, getPictures, getPicture, deletePicture, updatePicture };

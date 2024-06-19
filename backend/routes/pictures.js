@@ -3,6 +3,8 @@ import {
   getPictures,
   getPicture,
   createPicture,
+  deletePicture,
+  updatePicture,
 } from '../controllers/pictureController.js';
 
 const router = express.Router();
@@ -17,13 +19,9 @@ router.get('/:id', getPicture);
 router.post('/', createPicture);
 
 // DELETE a picture
-router.delete('/:id', (req, res) => {
-  res.json({ message: 'DELETE a picture' });
-});
+router.delete('/:id', deletePicture);
 
 // UPDATE a new picture
-router.patch('/:id', (req, res) => {
-  res.json({ message: 'UPDATE a picture' });
-});
+router.patch('/:id', updatePicture);
 
 export default router;
