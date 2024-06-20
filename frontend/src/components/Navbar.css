@@ -1,0 +1,45 @@
+.nav-item {
+  padding: 10px 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.nav-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.active-nav-item {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-nav .nav-item {
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-item:last-child {
+  margin-right: 0;
+}
+
+.custom-container {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  max-width: 90%;
+}
+
+.navbar-nav {
+  gap: 10px;
+}
+
+.nav-link {
+  padding: 10px 15px;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 40px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
