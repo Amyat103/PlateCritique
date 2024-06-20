@@ -13,6 +13,12 @@ export function PictureReducer(state, action) {
       return {
         picture: [action.payload, ...state.picture],
       };
+    case 'DELETE_POST':
+      return {
+        picture: state.picture.filter(
+          (each) => each._id !== action.payload._id
+        ),
+      };
     default:
       return state;
   }

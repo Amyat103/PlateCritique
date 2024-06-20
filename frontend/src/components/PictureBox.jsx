@@ -1,20 +1,22 @@
 import PropTypes from 'prop-types';
+import { usePictureContext } from './hooks/usePictureContext';
 
 function PictureBox({ picture }) {
+  const { dispatch } = usePictureContext();
   if (!picture) {
     return <div>No Data Error</div>;
   }
 
-  // async function handleClick(e) {
-  //   const response = await fetch('http://localhost:4000/' + picture._id, {
-  //     method: 'DELETE',
-  //   });
-  //   const json = await response.json();
+  async function handleDelete() {
+    const response = await fetch('http://localhost:4000/' + picture._id, {
+      method: 'DELETE',
+    });
+    const json = await response.json();
 
-  //   if (response.ok) {
-
-  //   }
-  // }
+    if (response.ok) {
+      dispatch({ type: 'DELETE_POST', payload: json });
+    }
+  }
 
   return (
     <div className='picture-box'>
@@ -25,7 +27,7 @@ function PictureBox({ picture }) {
         <strong>{picture.description}</strong>
       </p>
       <p>Posted On: {new Date(picture.createdAt).toLocaleString()}</p>
-      {/* <span onClick={handleDelete}>Delete</span> */}
+      <span onClick={handleDelete}>Delete</span>
     </div>
   );
 }
@@ -37,6 +39,7 @@ PictureBox.propTypes = {
     description: PropTypes.string,
     picture: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
