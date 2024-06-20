@@ -30,7 +30,12 @@ function PictureBox({ picture }) {
     <div className='picture-box'>
       <h3>{picture.title}</h3>
       <h4>{picture.foodType}</h4>
-      <p>{picture.picture}</p>
+      <img
+        src={`http://localhost:4000/images/${picture.picture}`}
+        alt={picture.title}
+        style={{ width: '100%', height: 'auto' }}
+      />
+
       <p>
         <strong>{picture.description}</strong>
       </p>

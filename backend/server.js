@@ -10,7 +10,14 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
 
 // add body to req to modify database
 app.use(express.json());
@@ -35,4 +42,5 @@ async function connectToMongo() {
     console.log(error);
   }
 }
+
 connectToMongo();

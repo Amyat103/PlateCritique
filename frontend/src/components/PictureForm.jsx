@@ -8,7 +8,7 @@ function PictureForm() {
   const [title, setTitle] = useState('');
   const [foodType, setFoodType] = useState('');
   const [description, setDescription] = useState('');
-  const [picture, setPicture] = useState('');
+  const [file, setFile] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const { id } = useParams();
 
@@ -31,9 +31,14 @@ function PictureForm() {
   async function handlePost(e) {
     e.preventDefault();
     setSubmitted(true);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('foodType', foodType);
+    formData.append('description', description);
+    formData.append('picture', file);
 
     if (e.target.checkValidity()) {
-      const post = { title, foodType, description, picture };
+      // const post = { title, foodType, description, picture };
       const endpoint = id
         ? `http://localhost:4000/${id}`
         : 'http://localhost:4000/';
@@ -42,10 +47,11 @@ function PictureForm() {
       try {
         const response = await fetch(endpoint, {
           method: method,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(post),
+          // browser default????
+          // headers: {
+          //   'Content-Type': 'application/json',
+          // },
+          body: formData,
         });
 
         const json = await response.json();
@@ -57,7 +63,7 @@ function PictureForm() {
             setTitle('');
             setFoodType('');
             setDescription('');
-            setPicture('');
+            setFile(null);
           }
           setSubmitted(false);
           dispatch({ type: id ? 'UPDATE_POST' : 'CREATE_POST', payload: json });
@@ -74,6 +80,7 @@ function PictureForm() {
         className='post-picture needs-validation'
         onSubmit={handlePost}
         noValidate
+        encType='multipart/form-data'
       >
         <h2>{id ? 'Update Post' : 'Upload A Post'}</h2>
 
@@ -152,20 +159,17 @@ function PictureForm() {
           </div>
         </div>
 
-        <div className='col-md-12'>
-          <label htmlFor='validationPicture'>Picture URL:</label>
+        <div className='input-group mb-3'>
           <input
-            type='text'
-            className={`form-control mb-3 ${
-              submitted ? (picture.length > 0 ? 'is-valid' : 'is-invalid') : ''
-            }`}
-            id='validationPicture'
-            value={picture}
-            onChange={(e) => setPicture(e.target.value)}
+            type='file'
+            className='form-control'
+            id='inputGroupFile02'
+            onChange={(e) => setFile(e.target.files[0])}
             required
           />
-          <div className='valid-feedback'>Looks good!</div>
-          <div className='invalid-feedback'>Please provide a picture URL.</div>
+          <label className='input-group-text' htmlFor='inputGroupFile02'>
+            Upload
+          </label>
         </div>
 
         <button type='submit' className='btn btn-primary'>

@@ -27,7 +27,11 @@ async function getPicture(req, res) {
 
 // CREATE new picture
 async function createPicture(req, res) {
-  const { title, foodType, description, picture, timestamp } = req.body;
+  console.log(req.body);
+  console.log(req.file);
+
+  const { title, foodType, description } = req.body;
+  const picture = req.file ? req.file.filename : null;
 
   try {
     const newPicture = await Picture.create({
@@ -35,7 +39,6 @@ async function createPicture(req, res) {
       foodType,
       description,
       picture,
-      timestamp,
     });
     res.status(200).json(newPicture);
   } catch (err) {
@@ -68,25 +71,23 @@ async function deletePicture(req, res) {
 
 async function updatePicture(req, res) {
   const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res
-      .status(404)
-      .json({ error: "Can't find that picture, couldn't delete" });
-  }
+  const { title, foodType, description } = req.body;
+  const picture = req.file ? req.file.filename : null;
 
   try {
-    const picture = await Picture.findByIdAndUpdate(id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!picture) {
-      return res.status(404).json({ error: 'No such picture found' });
-    }
-
-    res.status(200).json(picture);
+    const updatedPicture = await Picture.findByIdAndUpdate(
+      id,
+      {
+        title,
+        foodType,
+        description,
+        picture,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedPicture);
   } catch (err) {
+    console.log(err);
     res.status(400).json({ error: err.message });
   }
 }
