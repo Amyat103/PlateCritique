@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PictureForm from './components/PictureForm';
@@ -19,6 +18,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/post' element={<PictureForm />} />
+              <Route path='/post/:id' element={<PictureForm />} />
             </Routes>
           </div>
         </PictureContextProvider>

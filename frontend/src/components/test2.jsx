@@ -36,7 +36,7 @@ function PictureForm() {
       const endpoint = id
         ? `http://localhost:4000/${id}`
         : 'http://localhost:4000/';
-      const method = id ? 'PATCH' : 'POST';
+      const method = id ? 'PUT' : 'POST';
 
       try {
         const response = await fetch(endpoint, {

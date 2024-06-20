@@ -19,6 +19,12 @@ export function PictureReducer(state, action) {
           (each) => each._id !== action.payload._id
         ),
       };
+    case 'UPDATE_POST':
+      return {
+        picture: state.picture.map((each) =>
+          each._id === action.payload._id ? action.payload : each
+        ),
+      };
     default:
       return state;
   }
@@ -37,7 +43,7 @@ function PictureContextProvider({ children }) {
 }
 
 PictureContextProvider.propTypes = {
-  children: PropTypes.node.isRequired, // 'node' covers anything that can be rendered: numbers, strings, elements or an array (or fragment) containing these types.
+  children: PropTypes.node.isRequired,
 };
 
 export default PictureContextProvider;

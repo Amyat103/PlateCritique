@@ -75,18 +75,20 @@ async function updatePicture(req, res) {
       .json({ error: "Can't find that picture, couldn't delete" });
   }
 
-  const picture = await Picture.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
+  try {
+    const picture = await Picture.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!picture) {
+      return res.status(404).json({ error: 'No such picture found' });
     }
-  );
 
-  if (!picture) {
-    return res.status(400).json({ error: 'No such picture' });
+    res.status(200).json(picture);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
-
-  res.status(200).json(picture);
 }
 
 export { createPicture, getPictures, getPicture, deletePicture, updatePicture };

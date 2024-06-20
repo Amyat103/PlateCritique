@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { usePictureContext } from './hooks/usePictureContext';
 import delete_icon from '../assets/delete_icon.png';
+import { useNavigate } from 'react-router-dom';
 
 function PictureBox({ picture }) {
   const { dispatch } = usePictureContext();
+  const navigate = useNavigate();
+
   if (!picture) {
     return <div>No Data Error</div>;
   }
@@ -18,6 +21,10 @@ function PictureBox({ picture }) {
       dispatch({ type: 'DELETE_POST', payload: json });
     }
   }
+
+  const handleUpdate = () => {
+    navigate(`/post/${picture._id}`);
+  };
 
   return (
     <div className='picture-box'>
@@ -38,6 +45,7 @@ function PictureBox({ picture }) {
           color='black'
         />
       </span>
+      <button onClick={handleUpdate}>Update</button>
     </div>
   );
 }
