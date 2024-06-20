@@ -4,7 +4,7 @@ import PictureForm from './components/PictureForm';
 import PictureContextProvider from './components/context/PictureContext';
 
 import Home from './components/Home';
-import Navbar from './components/Narbar';
+import Navbar from './components/Navbar';
 
 function App() {
   // const [count, setCount] = useState(0);
