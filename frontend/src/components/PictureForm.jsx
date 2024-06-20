@@ -1,13 +1,13 @@
 import { useState } from 'react';
+import { usePictureContext } from './hooks/usePictureContext';
 
 function PictureForm() {
+  const { dispatch } = usePictureContext();
   const [title, setTitle] = useState('');
   const [foodType, setFoodType] = useState('');
   const [description, setDescription] = useState('');
   const [picture, setPicture] = useState('');
   const [submitted, setSubmitted] = useState(false);
-
-  const [error, setError] = useState(null);
 
   async function handlePost(e) {
     e.preventDefault();
@@ -37,6 +37,7 @@ function PictureForm() {
           setPicture('');
           setSubmitted(false);
           console.log('POST POSTED');
+          dispatch({ type: 'CREATE_POST', payload: json });
         }
       } catch (error) {
         console.error('Could not post:', error);

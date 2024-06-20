@@ -5,6 +5,17 @@ function PictureBox({ picture }) {
     return <div>No Data Error</div>;
   }
 
+  // async function handleClick(e) {
+  //   const response = await fetch('http://localhost:4000/' + picture._id, {
+  //     method: 'DELETE',
+  //   });
+  //   const json = await response.json();
+
+  //   if (response.ok) {
+
+  //   }
+  // }
+
   return (
     <div className='picture-box'>
       <h3>{picture.title}</h3>
@@ -14,6 +25,7 @@ function PictureBox({ picture }) {
         <strong>{picture.description}</strong>
       </p>
       <p>Posted On: {new Date(picture.createdAt).toLocaleString()}</p>
+      {/* <span onClick={handleDelete}>Delete</span> */}
     </div>
   );
 }

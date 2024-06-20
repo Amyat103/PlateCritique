@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PictureBox from './PictureBox';
-import PictureForm from './PictureForm';
+import { usePictureContext } from './hooks/usePictureContext';
 
 function Home() {
-  const [picture, setPicture] = useState(null);
+  // const [picture, setPicture] = useState(null);
+  const { picture, dispatch } = usePictureContext();
 
   useEffect(() => {
     async function fetchPicture() {
-      try {
-        const response = await fetch('http://localhost:4000/');
-        const json = await response.json();
+      // try {
+      const response = await fetch('http://localhost:4000/');
+      const json = await response.json();
 
-        if (!response.ok) {
-          console.log(response.error);
-        }
-        setPicture(json);
-      } catch (err) {
-        console.log(err);
+      if (response.ok) {
+        dispatch({ type: 'SET_POST', payload: json });
       }
+      // } catch (err) {
+      //   console.log('Fetch error', err);
+      // }
     }
 
     fetchPicture();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='container'>
