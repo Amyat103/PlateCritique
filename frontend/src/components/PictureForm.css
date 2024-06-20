@@ -1,0 +1,72 @@
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.btn-container {
+  flex-grow: 1;
+  margin: 0 1px;
+}
+
+.btn-outline-danger {
+  color: #bf0000;
+  border-color: #bf0000;
+  width: 100%;
+}
+
+.btn-outline-danger:hover,
+.btn-check:checked + .btn-outline-danger {
+  background-color: #bf0000;
+  color: white;
+  border-color: #bf0000;
+}
+
+.post-picture .btn-primary {
+  background-color: #bf0000;
+  border-color: #bf0000;
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+}
+
+.post-picture .btn-primary:hover,
+.post-picture .btn-primary:focus,
+.post-picture .btn-primary:active {
+  background-color: #bf0000 !important;
+  border-color: #bf0000 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.post-picture {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.post-picture h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post-picture .form-control {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-container {
+    flex-grow: 0;
+    margin: 2px 0;
+  }
+
+  .post-picture .btn-primary {
+    width: 100%;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePictureContext } from './hooks/usePictureContext';
 import { useParams } from 'react-router-dom';
+import './PictureForm.css';
 
 function PictureForm() {
   const { dispatch } = usePictureContext();
@@ -76,7 +77,7 @@ function PictureForm() {
       >
         <h2>{id ? 'Update Post' : 'Upload A Post'}</h2>
 
-        <div className='col-md-4'>
+        <div className='col-md-12 mb-3'>
           <label htmlFor='validationCustom01'>Post Title:</label>
           <input
             type='text'
@@ -99,35 +100,34 @@ function PictureForm() {
             Please enter a valid title (3-100 characters).
           </div>
         </div>
-        <div className='col-md-4'>
-          <label htmlFor='validationFoodType'>Food Type:</label>
-          <select
-            className={`form-control mb-3 ${
-              submitted
-                ? ['Snack', 'Breakfast', 'Brunch', 'Dinner', 'Lunch'].includes(
-                    foodType
-                  )
-                  ? 'is-valid'
-                  : 'is-invalid'
-                : ''
-            }`}
-            id='validationFoodType'
-            value={foodType}
-            onChange={(e) => setFoodType(e.target.value)}
-            required
-          >
-            <option value=''>Select Food Type</option>
-            <option value='Snack'>Snack</option>
-            <option value='Breakfast'>Breakfast</option>
-            <option value='Brunch'>Brunch</option>
-            <option value='Dinner'>Dinner</option>
-            <option value='Lunch'>Lunch</option>
-          </select>
-          <div className='valid-feedback'>Looks good!</div>
+
+        <div className='col-md-12 mb-3'>
+          <label htmlFor='foodType'>Food Type:</label>
+          <div className='btn-group d-flex' role='group' aria-label='Food Type'>
+            {['Snack', 'Breakfast', 'Brunch', 'Dinner', 'Lunch'].map((type) => (
+              <div key={type} className='btn-container'>
+                <input
+                  type='radio'
+                  className='btn-check'
+                  name='foodType'
+                  id={type}
+                  value={type}
+                  autoComplete='off'
+                  checked={foodType === type}
+                  onChange={(e) => setFoodType(e.target.value)}
+                  required
+                />
+                <label className='btn btn-outline-danger' htmlFor={type}>
+                  {type}
+                </label>
+              </div>
+            ))}
+          </div>
           <div className='invalid-feedback'>
             Please select a valid food type.
           </div>
         </div>
+
         <div className='col-md-12'>
           <label htmlFor='validationDescription'>Description:</label>
           <input
@@ -151,6 +151,7 @@ function PictureForm() {
             Please enter a description (5-300 characters) or leave it empty.
           </div>
         </div>
+
         <div className='col-md-12'>
           <label htmlFor='validationPicture'>Picture URL:</label>
           <input
