@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { usePictureContext } from './hooks/usePictureContext';
+import delete_icon from '../assets/delete_icon.png';
 
 function PictureBox({ picture }) {
   const { dispatch } = usePictureContext();
@@ -27,7 +28,16 @@ function PictureBox({ picture }) {
         <strong>{picture.description}</strong>
       </p>
       <p>Posted On: {new Date(picture.createdAt).toLocaleString()}</p>
-      <span onClick={handleDelete}>Delete</span>
+      <span onClick={handleDelete}>
+        <img
+          src={delete_icon}
+          alt='Delete'
+          className='img-fluid icon-hover-effect'
+          style={{ cursor: 'pointer', width: '24px', height: '24px' }}
+          width={30}
+          color='black'
+        />
+      </span>
     </div>
   );
 }

@@ -1,0 +1,8 @@
+.icon-hover-effect {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.icon-hover-effect:hover {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
