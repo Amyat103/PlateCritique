@@ -40,6 +40,11 @@ function PictureForm() {
     formData.append('picture', file);
     formData.append('rating', rating);
 
+    if (!file) {
+      alert('Please upload a file.');
+      return;
+    }
+
     if (e.target.checkValidity()) {
       // const post = { title, foodType, description, picture };
       const endpoint = id
