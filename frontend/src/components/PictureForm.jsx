@@ -11,6 +11,7 @@ function PictureForm() {
   const [file, setFile] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const { id } = useParams();
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     if (id) {
@@ -21,7 +22,8 @@ function PictureForm() {
           setTitle(data.title);
           setFoodType(data.foodType);
           setDescription(data.description);
-          setPicture(data.picture);
+          setFile(data.picture);
+          setRating(data.rating || 0);
         }
       };
       fetchData();
@@ -36,6 +38,7 @@ function PictureForm() {
     formData.append('foodType', foodType);
     formData.append('description', description);
     formData.append('picture', file);
+    formData.append('rating', rating);
 
     if (e.target.checkValidity()) {
       // const post = { title, foodType, description, picture };
@@ -64,6 +67,7 @@ function PictureForm() {
             setFoodType('');
             setDescription('');
             setFile(null);
+            setRating(0);
           }
           setSubmitted(false);
           dispatch({ type: id ? 'UPDATE_POST' : 'CREATE_POST', payload: json });
@@ -133,6 +137,29 @@ function PictureForm() {
           <div className='invalid-feedback'>
             Please select a valid food type.
           </div>
+        </div>
+
+        <label htmlFor='rating-button-id'>Rating:</label>
+        <div className='rating'>
+          {[...Array(5)].map((star, index) => {
+            const ratingValue = index + 1;
+            return (
+              <button
+                id='rating-button-id'
+                type='button'
+                key={ratingValue}
+                className={`btn ${ratingValue <= (rating || 0) ? 'on' : ''}`}
+                onClick={() => setRating(ratingValue)}
+                style={{
+                  fontSize: '40px',
+                  color: 'yellow',
+                  WebkitTextStroke: '1px black',
+                }}
+              >
+                <span className='star'>&#9733;</span>
+              </button>
+            );
+          })}
         </div>
 
         <div className='col-md-12'>

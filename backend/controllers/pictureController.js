@@ -30,7 +30,7 @@ async function createPicture(req, res) {
   console.log(req.body);
   console.log(req.file);
 
-  const { title, foodType, description } = req.body;
+  const { title, foodType, description, rating } = req.body;
   const picture = req.file ? req.file.filename : null;
 
   try {
@@ -39,6 +39,7 @@ async function createPicture(req, res) {
       foodType,
       description,
       picture,
+      rating,
     });
     res.status(200).json(newPicture);
   } catch (err) {
@@ -71,7 +72,7 @@ async function deletePicture(req, res) {
 
 async function updatePicture(req, res) {
   const { id } = req.params;
-  const { title, foodType, description } = req.body;
+  const { title, foodType, description, rating } = req.body;
   const picture = req.file ? req.file.filename : null;
 
   try {
@@ -82,6 +83,7 @@ async function updatePicture(req, res) {
         foodType,
         description,
         picture,
+        rating,
       },
       { new: true }
     );

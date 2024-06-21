@@ -70,3 +70,31 @@
     width: 100%;
   }
 }
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.rating-display .star {
+  color: yellow;
+  -webkit-text-stroke: 0.5px black;
+}
+
+.rating button {
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+.rating .star {
+  font-size: 40px;
+  color: transparent;
+  -webkit-text-stroke: 10px black;
+}
+
+.rating .on .star {
+  color: yellow;
+  -webkit-text-stroke: 10px black;
+}

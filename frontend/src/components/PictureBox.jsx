@@ -40,7 +40,16 @@ function PictureBox({ picture }) {
       </div>
       <div className='card-body flex-grow-1 d-flex flex-column'>
         <h5 className='card-title'>{picture.title}</h5>
-        <h6 className='card-subtitle mb-2 text-muted'>{picture.foodType}</h6>
+        <h6 className='card-subtitle mb-2'>{picture.foodType}</h6>
+        <div className='rating-display'>
+          {Array(picture.rating)
+            .fill()
+            .map((_, i) => (
+              <span key={i} className='star'>
+                &#9733;
+              </span>
+            ))}
+        </div>
         <p className='card-text description'>{picture.description}</p>
       </div>
       <div className='card-footer mt-auto'>
@@ -75,6 +84,7 @@ PictureBox.propTypes = {
     picture: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
   }).isRequired,
 };
 
