@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import './PictureForm.css';
 
 function PictureForm() {
+  const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
   const { dispatch } = usePictureContext();
   const [title, setTitle] = useState('');
   const [foodType, setFoodType] = useState('');
@@ -16,7 +17,7 @@ function PictureForm() {
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
-        const response = await fetch(`http://localhost:4000/${id}`);
+        const response = await fetch(`${API_URL}/${id}`);
         const data = await response.json();
         if (response.ok) {
           setTitle(data.title);
@@ -28,7 +29,7 @@ function PictureForm() {
       };
       fetchData();
     }
-  }, [id]);
+  }, [API_URL, id]);
 
   async function handlePost(e) {
     e.preventDefault();
@@ -47,9 +48,7 @@ function PictureForm() {
 
     if (e.target.checkValidity()) {
       // const post = { title, foodType, description, picture };
-      const endpoint = id
-        ? `http://localhost:4000/${id}`
-        : 'http://localhost:4000/';
+      const endpoint = `${API_URL}/${id ? id : ''}`;
       const method = id ? 'PATCH' : 'POST';
 
       try {
