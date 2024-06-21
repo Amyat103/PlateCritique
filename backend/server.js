@@ -13,7 +13,7 @@ const app = express();
 // app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(
   cors({
-    origin: 'platecritique-backend.up.railway.appp',
+    origin: 'https://platecritique.up.railway.app',
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   })
