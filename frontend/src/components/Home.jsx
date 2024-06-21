@@ -5,11 +5,12 @@ import { usePictureContext } from './hooks/usePictureContext';
 function Home() {
   // const [picture, setPicture] = useState(null);
   const { picture, dispatch } = usePictureContext();
+  const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
   useEffect(() => {
     async function fetchPicture() {
       // try {
-      const response = await fetch('http://localhost:4000/');
+      const response = await fetch(`${API_URL}/`);
       const json = await response.json();
 
       if (response.ok) {
@@ -21,7 +22,7 @@ function Home() {
     }
 
     fetchPicture();
-  }, [dispatch]);
+  }, [dispatch, API_URL]);
 
   return (
     <div className='container mt-4'>

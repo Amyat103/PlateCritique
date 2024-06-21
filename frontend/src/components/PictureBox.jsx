@@ -7,13 +7,14 @@ import './PictureBox.css';
 function PictureBox({ picture }) {
   const { dispatch } = usePictureContext();
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
   if (!picture) {
     return <div>No Data Error</div>;
   }
 
   async function handleDelete() {
-    const response = await fetch('http://localhost:4000/' + picture._id, {
+    const response = await fetch(`${API_URL}/${picture._id}`, {
       method: 'DELETE',
     });
     const json = await response.json();
