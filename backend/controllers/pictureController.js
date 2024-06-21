@@ -1,4 +1,4 @@
-import Picture from '../models/PictureModel.js';
+import Picture from '../models/pictureModel.js';
 import mongoose from 'mongoose';
 
 // GET all pictures
