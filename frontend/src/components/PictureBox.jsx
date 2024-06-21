@@ -33,7 +33,7 @@ function PictureBox({ picture }) {
       {/* bootstrap change height percent */}
       <div className='image-container flex-shrink-0' style={{ height: '40%' }}>
         <img
-          src={`http://localhost:4000/images/${picture.picture}`}
+          src={`${API_URL}/images/${picture.picture}`}
           className='card-img-top h-100 w-100'
           alt={picture.title}
           style={{ objectFit: 'contain', backgroundColor: 'white' }}
