@@ -24,11 +24,14 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className='container'>
-      <div className='pictures'>
-        <h2>Home</h2>
+    <div className='container mt-4'>
+      <div className='row row-cols-1 row-cols-md-4 g-4'>
         {picture &&
-          picture.map((each) => <PictureBox key={each._id} picture={each} />)}
+          picture.map((each) => (
+            <div className='col' key={each._id}>
+              <PictureBox picture={each} />
+            </div>
+          ))}
       </div>
     </div>
   );

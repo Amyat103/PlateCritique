@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { usePictureContext } from './hooks/usePictureContext';
 import delete_icon from '../assets/delete_icon.png';
 import { useNavigate } from 'react-router-dom';
+import './PictureBox.css';
 
 function PictureBox({ picture }) {
   const { dispatch } = usePictureContext();
@@ -27,30 +28,41 @@ function PictureBox({ picture }) {
   };
 
   return (
-    <div className='picture-box'>
-      <h3>{picture.title}</h3>
-      <h4>{picture.foodType}</h4>
-      <img
-        src={`http://localhost:4000/images/${picture.picture}`}
-        alt={picture.title}
-        style={{ width: '100%', height: 'auto' }}
-      />
-
-      <p>
-        <strong>{picture.description}</strong>
-      </p>
-      <p>Posted On: {new Date(picture.createdAt).toLocaleString()}</p>
-      <span onClick={handleDelete}>
+    <div className='card h-100 d-flex flex-column'>
+      {/* bootstrap change height percent */}
+      <div className='image-container flex-shrink-0' style={{ height: '40%' }}>
         <img
-          src={delete_icon}
-          alt='Delete'
-          className='img-fluid icon-hover-effect'
-          style={{ cursor: 'pointer', width: '24px', height: '24px' }}
-          width={30}
-          color='black'
+          src={`http://localhost:4000/images/${picture.picture}`}
+          className='card-img-top h-100 w-100'
+          alt={picture.title}
+          style={{ objectFit: 'contain', backgroundColor: 'white' }}
         />
-      </span>
-      <button onClick={handleUpdate}>Update</button>
+      </div>
+      <div className='card-body flex-grow-1 d-flex flex-column'>
+        <h5 className='card-title'>{picture.title}</h5>
+        <h6 className='card-subtitle mb-2 text-muted'>{picture.foodType}</h6>
+        <p className='card-text description'>{picture.description}</p>
+      </div>
+      <div className='card-footer mt-auto'>
+        <small className='text-muted'>
+          {new Date(picture.createdAt).toLocaleString()}
+        </small>
+        <div className='d-flex justify-content-between mt-2 align-items-center'>
+          <button
+            type='button'
+            className='btn btn-outline-danger update-button'
+            onClick={handleUpdate}
+          >
+            Update
+          </button>
+          <img
+            src={delete_icon}
+            alt='Delete'
+            className='delete-icon'
+            onClick={handleDelete}
+          />
+        </div>
+      </div>
     </div>
   );
 }
