@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" id="readme-top">
 <div align="center">
   <a href="https://github.com/yourusername/platecritique">
     <img src="frontend/src/assets/logo.png" alt="Logo" width="80" height="80">
@@ -83,7 +83,7 @@ Ensure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/platecritique.git
+   git clone https://github.com/Amyat103/PlateCritique.git
 
    ```
 
