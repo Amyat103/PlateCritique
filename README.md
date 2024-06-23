@@ -7,9 +7,9 @@
   <p align="center">
     A vibrant social platform for food enthusiasts to share and rate their favorite dishes.
     <br />
-    <a href="https://platecritique.up.railway.app/"><strong>Explore PlateCritique Click Here»</strong></a>
+    <a href="https://platecritique.up.railway.app/" target="_blank"><strong>Explore PlateCritique Click Here»</strong></a>
     <br>
-    <a hred="https://platecritique.up.railway.app/">https://platecritique.up.railway.app/</a>
+    <a href="https://platecritique.up.railway.app/" target="_blank">https://platecritique.up.railway.app/</a>
     <br />
   </p>
 </div>
