@@ -168,3 +168,7 @@ Feel free to connect and discuss any aspects of the project or to provide valuab
 [mongodb-url]: https://www.mongodb.com/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
+
+## TODO
+
+Fix CSS for BootStrap, maybe change to tailwind
